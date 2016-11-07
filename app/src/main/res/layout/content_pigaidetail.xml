@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_pigai"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".ui.activity.PigaiActivity"
+    tools:showIn="@layout/activity_pigaidetail">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        >
+        <TextView
+            android:text="未批改"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#444444"
+            android:id="@+id/tv_nocheck"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_pigaizuoye_weipigai"
+            android:text="14"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lv_weipigai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#DDDDDD"
+        android:layout_marginTop="10dp"
+        android:id="@+id/gap" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:text="已批改"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#444444"
+            android:id="@+id/tv_checked"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_pigaizuoye_yipigai"
+            android:text="11"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/lv_yipigai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+
+</LinearLayout>

@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">小Q班级</string>
+    <string name="action_settings">设置</string>
+    <string name="action_exit">再按一次退出小Q班级</string>
+    <string name="toolbar_homework">作业</string>
+    <string name="toolbar_note">小纸条</string>
+    <string name="toolbar_growup">成长树</string>
+    <string name="toolbar_user">我的</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_buzhi">布置作业</string>
+    <string name="title_activity_pigai">批改作业</string>
+    <string name="title_activity_devicelist">搜索设备</string>
+    <string name="rfid_wait_for_read">等待读取作业本……</string>
+    <string name="rfid_read">请将作业本的电子标签触碰读卡器</string>
+    <string name="rfid_read_ok">读取成功</string>
+    <!--  DeviceListActivity -->
+    <string name="scanning">scanning for devices...</string>
+    <string name="select_device">select a device to connect</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="none_found">No devices found</string>
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="title_other_devices">Other Available Devices</string>
+    <string name="button_scan">Scan for devices</string>
+    <string name="title_activity_little_qapp">little</string>
+    <!-- MarkActivity-->
+    <string name="input_score">请输入成绩</string>
+    <!--login-->
+    <string name="login">登录</string>
+    <!-- FragmentGrowup-->
+    <string name="growup_allclass">全部班级</string>
+
+    <string name="add_leaf">添加一片树叶</string>
+</resources>
