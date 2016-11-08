@@ -26,7 +26,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
-
 import cn.finalteam.galleryfinal.CoreConfig;
 import cn.finalteam.galleryfinal.FunctionConfig;
 import cn.finalteam.galleryfinal.GalleryFinal;
@@ -37,6 +36,7 @@ import littleq.mammoth.com.littleq.R;
 import littleq.mammoth.com.littleq.ui.BaseActivity;
 import littleq.mammoth.com.littleq.utils.UILImageLoader;
 import littleq.mammoth.com.littleq.utils.UILPauseOnScrollListener;
+import littleq.mammoth.com.littleq.widget.MainTopTitle;
 
 
 /**
@@ -47,7 +47,7 @@ public class AddLeafActivity extends BaseActivity {
     private final int REQUEST_CODE_GALLERY = 1001;
     private final int REQUEST_CODE_CROP = 1002;
     private final int REQUEST_CODE_EDIT = 1003;
-
+    private MainTopTitle title;
     private TextView tvTitle;
     private RelativeLayout rlTitle;
     private ImageView ivLeft;
@@ -69,18 +69,16 @@ public class AddLeafActivity extends BaseActivity {
 
     @Override
     public void init() {
-        rlTitle = (RelativeLayout) findViewById(R.id.littleq_title);
-        rlTitle.setBackgroundResource(R.color.colorTitle);
-        tvTitle = (TextView) findViewById(R.id.tv_title);
-        tvTitle.setText("添加一片树叶");
-        ivLeft = (ImageView) findViewById(R.id.iv_left);
-        ivLeft.setImageResource(R.mipmap.back_arrow);
-        ivLeft.setOnClickListener(new View.OnClickListener() {
+        title = (MainTopTitle)findViewById(R.id.title);
+        MainTopTitle.Builder builder = new MainTopTitle.Builder(getString(R.string.add_leaf));
+        builder.left(MainTopTitle.LEFT_IMG).leftImg(R.mipmap.back_arrow);
+        builder.leftOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 AddLeafActivity.this.finish();
             }
         });
+        title.setBuilder(builder);
         releaseButton = (TextView)findViewById(R.id.leaf_released);
 
         linearClass = (LinearLayout) findViewById(R.id.ll_class);
@@ -371,6 +369,4 @@ public class AddLeafActivity extends BaseActivity {
             return null;
         }
     }
-
-
 }

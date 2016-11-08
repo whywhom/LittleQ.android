@@ -4,7 +4,6 @@ import android.app.Application;
 
 public class LittleQApp extends Application {
     public static boolean DEBUG = true;
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -19,6 +18,5 @@ public class LittleQApp extends Application {
     public void onTrimMemory(int level) {
         super.onTrimMemory(level);
     }
-
 
 }

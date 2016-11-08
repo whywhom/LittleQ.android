@@ -23,12 +23,14 @@ import littleq.mammoth.com.littleq.adapter.ListViewTreeAdapter;
 import littleq.mammoth.com.littleq.ui.BaseFragment;
 import littleq.mammoth.com.littleq.ui.activity.AddLeafActivity;
 import littleq.mammoth.com.littleq.utils.GrowTree;
+import littleq.mammoth.com.littleq.widget.MainTopTitle;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class FragmentGrowup extends BaseFragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
+    private MainTopTitle title;
     private TextView tvTitle;
     private RelativeLayout rlTitle;
     private ImageView ivRight;
@@ -37,7 +39,6 @@ public class FragmentGrowup extends BaseFragment {
     private ListView listviewTree;
     private ListViewTreeAdapter listViewTreeAdapter;
     private ArrayList<GrowTree> growTreeList = new ArrayList<GrowTree>();
-
     public static FragmentGrowup newInstance(int sectionNumber) {
         FragmentGrowup fragment = new FragmentGrowup();
         Bundle args = new Bundle();
@@ -52,15 +53,10 @@ public class FragmentGrowup extends BaseFragment {
 
     @Override
     public void init() {
-        rlTitle = (RelativeLayout) rootView.findViewById(R.id.littleq_title);
-        rlTitle.setBackgroundResource(R.color.colorTitle);
-        tvTitle = (TextView) rootView.findViewById(R.id.tv_title);
-        tvTitle.setText(R.string.toolbar_growup);
-        ivRight = (ImageView) rootView.findViewById(R.id.iv_right);
-        ivRight.setVisibility(View.GONE);
-        tvRight = (TextView) rootView.findViewById(R.id.tv_right);
-        tvRight.setVisibility(View.VISIBLE);
-        tvRight.setText(R.string.growup_allclass);
+        title = (MainTopTitle)rootView.findViewById(R.id.title);
+        MainTopTitle.Builder builder = new MainTopTitle.Builder(getString(R.string.toolbar_growup));
+        builder.right(MainTopTitle.RIGHT_CHARACTOR).rightChar(getString(R.string.growup_allclass));
+        title.setBuilder(builder);
         listviewTree = (ListView) rootView.findViewById(R.id.lv_tree);
         fab = (ImageView) rootView.findViewById(R.id.fab);
 
@@ -169,6 +165,4 @@ public class FragmentGrowup extends BaseFragment {
         Log.e("msg", t1);
         return t1;
     }
-
-
 }

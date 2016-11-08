@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/user_gap_bg"
     tools:context=".ui.fragment.FragmentUser">
     <RelativeLayout
         android:id="@+id/title"
@@ -19,7 +20,7 @@
             android:layout_marginRight="15dp"
             android:src="@mipmap/tupai_test_0"
             app:civ_border_width="2dp"
-            app:civ_border_color="@color/dark"
+            app:civ_border_color="@color/white"
             android:layout_centerVertical="true" />
 
 
@@ -37,11 +38,12 @@
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
-                android:text="王胖子"/>
+                android:text="唐三藏"/>
             <TextView
                 android:id="@+id/user_class"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:textColor="@color/user_top_text_bg"
                 android:textSize="12sp"
                 android:text="一年级(1)班 班主任"/>
@@ -50,11 +52,249 @@
             android:id="@+id/iv_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:src="@mipmap/right_arrow"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/btn_disclosure_arrow_n"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/transparent"
+        android:layout_below="@id/title">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/transparent"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/user_gap2_bg"/>
+        <RelativeLayout
+            android:id="@+id/ll_lesson_class"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:background="@android:color/white">
+            <ImageView
+                android:id="@+id/iv_lesson_class"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:src="@mipmap/icon_wode_subject"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"/>
+            <ImageView
+                android:id="@+id/iv_lesson_class_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:src="@mipmap/btn_disclosure_arrow_h"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"/>
+            <TextView
+                android:id="@+id/tv_lesson_class"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_lesson_class"
+                android:layout_toLeftOf="@id/iv_lesson_class_more"
+                android:layout_marginLeft="14dp"
+                android:textColor="@color/text"
+                android:textSize="14sp"
+                android:text="@string/lesson_and_class"/>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/user_gap2_bg"/>
+        <RelativeLayout
+            android:id="@+id/ll_score"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:background="@android:color/white" >
+            <ImageView
+                android:id="@+id/iv_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:src="@mipmap/icon_wode_fenzhi"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"/>
+            <ImageView
+                android:id="@+id/iv_score_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:src="@mipmap/btn_disclosure_arrow_h"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"/>
+            <TextView
+                android:id="@+id/tv_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_score"
+                android:layout_toLeftOf="@id/iv_score_more"
+                android:layout_marginLeft="14dp"
+                android:textColor="@color/text"
+                android:textSize="14sp"
+                android:text="@string/user_score"/>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/user_gap2_bg"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/user_gap_bg"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/user_gap2_bg"/>
+        <RelativeLayout
+            android:id="@+id/ll_wallet"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:background="@android:color/white">
+            <ImageView
+                android:id="@+id/iv_wallet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:src="@mipmap/icon_wode_wallet"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"/>
+            <ImageView
+                android:id="@+id/iv_wallet_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:src="@mipmap/btn_disclosure_arrow_h"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"/>
+            <TextView
+                android:id="@+id/tv_wallet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_wallet"
+                android:layout_toLeftOf="@id/iv_wallet_more"
+                android:layout_marginLeft="14dp"
+                android:textColor="@color/text"
+                android:textSize="14sp"
+                android:text="@string/user_wallet"/>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/user_gap2_bg"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/user_gap_bg"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/user_gap2_bg"/>
+        <RelativeLayout
+            android:id="@+id/ll_setting"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:background="@android:color/white">
+            <ImageView
+                android:id="@+id/iv_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:src="@mipmap/icon_wode_settings"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="15dp"/>
+            <ImageView
+                android:id="@+id/iv_setting_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerInside"
+                android:src="@mipmap/btn_disclosure_arrow_h"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="15dp"/>
+            <TextView
+                android:id="@+id/tv_setting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iv_setting"
+                android:layout_toLeftOf="@id/iv_setting_more"
+                android:layout_marginLeft="14dp"
+                android:textColor="@color/text"
+                android:textSize="14sp"
+                android:text="@string/user_setting"/>
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/user_gap2_bg"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:background="@android:color/transparent">
 
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            android:background="@android:color/transparent">
+            <TextView
+                android:id="@+id/tv_user_share_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/user_share_tip"
+                android:textColor="@color/black"
+                android:background="@android:color/transparent"
+                android:textSize="14sp"/>
+            <View
+                android:layout_width="10dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"/>
+            <TextView
+                android:id="@+id/tv_user_share_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/user_share_detail"
+                android:textColor="@color/royalblue"
+                android:background="@android:color/transparent"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/user_gap2_bg"/>
+        <TextView
+            android:id="@+id/tv_user_share"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:drawableLeft="@mipmap/icon_wode_share"
+            android:text="@string/user_share"
+            android:textColor="@color/royalblue"
+            android:textSize="14sp"
+            android:drawablePadding="10dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/user_gap2_bg"/>
+    </LinearLayout>
 </RelativeLayout>

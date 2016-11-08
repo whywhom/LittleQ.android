@@ -34,6 +34,7 @@ import littleq.mammoth.com.littleq.R;
 import littleq.mammoth.com.littleq.adapter.ExpandableAdapter;
 import littleq.mammoth.com.littleq.application.LittleQApp;
 import littleq.mammoth.com.littleq.ui.BaseActivity;
+import littleq.mammoth.com.littleq.widget.MainTopTitle;
 
 public class PigaiActivity extends BaseActivity {
     private static final String TAG = PigaiActivity.class.getSimpleName();
@@ -61,6 +62,7 @@ public class PigaiActivity extends BaseActivity {
 
     private final static byte CONECT_RETRY_COUNT = 1;
     public static byte mConnectAgain = CONECT_RETRY_COUNT;
+    private MainTopTitle title;
     private TextView tvTitle;
     private RelativeLayout rlTitle;
     private ImageView ivLeft;
@@ -91,18 +93,16 @@ public class PigaiActivity extends BaseActivity {
     public void init() {
         mContext = this;
         String infoString = getIntent().getStringExtra("title");
-        rlTitle = (RelativeLayout) findViewById(R.id.littleq_title);
-        rlTitle.setBackgroundResource(R.color.colorTitle);
-        tvTitle = (TextView) findViewById(R.id.tv_title);
-        tvTitle.setText(infoString == null?getString(R.string.title_activity_pigai):infoString);
-        ivLeft = (ImageView) findViewById(R.id.iv_left);
-        ivLeft.setImageResource(R.mipmap.back_arrow);
-        ivLeft.setOnClickListener(new View.OnClickListener() {
+        title = (MainTopTitle)findViewById(R.id.title);
+        MainTopTitle.Builder builder = new MainTopTitle.Builder(infoString == null?getString(R.string.title_activity_pigai):infoString);
+        builder.left(MainTopTitle.LEFT_IMG).leftImg(R.mipmap.back_arrow);
+        builder.leftOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
                 PigaiActivity.this.finish();
             }
         });
+
         initSensor();
         initExpandableListView();
         initBluetooth();

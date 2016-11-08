@@ -3,11 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.FragmentNote">
-    <include layout="@layout/littleq_title"
-        android:id="@+id/littleq_title"
+    <littleq.mammoth.com.littleq.widget.MainTopTitle
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_alignParentTop="true"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
 
-
+    </littleq.mammoth.com.littleq.widget.MainTopTitle>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/title">
+    </RelativeLayout>
 </RelativeLayout>

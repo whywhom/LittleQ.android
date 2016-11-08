@@ -13,6 +13,7 @@
     <string name="rfid_wait_for_read">等待读取作业本……</string>
     <string name="rfid_read">请将作业本的电子标签触碰读卡器</string>
     <string name="rfid_read_ok">读取成功</string>
+
     <!--  DeviceListActivity -->
     <string name="scanning">scanning for devices...</string>
     <string name="select_device">select a device to connect</string>
@@ -22,12 +23,40 @@
     <string name="title_other_devices">Other Available Devices</string>
     <string name="button_scan">Scan for devices</string>
     <string name="title_activity_little_qapp">little</string>
+
     <!-- MarkActivity-->
     <string name="input_score">请输入成绩</string>
+
     <!--login-->
     <string name="login">登录</string>
+    <string name="illegal_loginname">用户名格式有误</string>
+    <string name="illegal_loginpwd">请输入6-18位密码</string>
+
     <!-- FragmentGrowup-->
+    <string name="add_leaf">添加一片树叶</string>
     <string name="growup_allclass">全部班级</string>
 
-    <string name="add_leaf">添加一片树叶</string>
+    <!-- FragmentUser-->
+    <string name="lesson_and_class">科目与班级</string>
+    <string name="user_score">作业分制</string>
+    <string name="user_wallet">我的钱包</string>
+    <string name="user_setting">设置</string>
+    <string name="user_share">分享给学生家长和朋友</string>
+    <string name="user_share_tip">分享给更多的人一起使用吧!分享有奖励哦</string>
+    <string name="user_share_detail">查看详情</string>
+    <string name="title_activity_class">ClassActivity</string>
+
+    <!--UserInfoActivity-->
+    <string name="title_activity_userinfo">个人信息</string>
+    <string name="userinfo_change_head">更换头像</string>
+    <string name="userinfo_name">姓名</string>
+    <string name="userinfo_name_detail">唐三藏</string>
+    <string name="userinfo_sex">性别</string>
+    <string name="userinfo_sex_detail">女</string>
+    <string name="userinfo_birth">生日</string>
+    <string name="userinfo_birth_detail">1990-10-10</string>
+    <string name="userinfo_mobile">手机号码</string>
+    <string name="userinfo_mobile_detail">133****6656</string>
+    <string name="userinfo_myschool">我的学校</string>
+    <string name="userinfo_myschool_detail">上海愚园路第一小学</string>
 </resources>

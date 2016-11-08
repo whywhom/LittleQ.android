@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="littleq.mammoth.com.littleq.ui.activity.AddLeafActivity">
-
-    <include layout="@layout/littleq_title"
-        android:id="@+id/littleq_title"
+    <littleq.mammoth.com.littleq.widget.MainTopTitle
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_alignParentTop="true"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+    </littleq.mammoth.com.littleq.widget.MainTopTitle>
+
     <LinearLayout
         android:id="@+id/ll_btn_add"
         android:layout_width="match_parent"
@@ -27,7 +28,7 @@
     </LinearLayout>
     <LinearLayout
         android:id="@+id/content_leaf"
-        android:layout_below="@id/littleq_title"
+        android:layout_below="@id/title"
         android:layout_above= "@id/ll_btn_add"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

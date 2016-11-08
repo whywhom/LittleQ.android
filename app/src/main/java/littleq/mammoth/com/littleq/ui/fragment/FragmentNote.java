@@ -11,15 +11,14 @@ import android.widget.TextView;
 
 import littleq.mammoth.com.littleq.R;
 import littleq.mammoth.com.littleq.ui.BaseFragment;
+import littleq.mammoth.com.littleq.widget.MainTopTitle;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class FragmentNote extends BaseFragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private TextView tvTitle;
-    private RelativeLayout rlTitle;
-    private ImageView ivRight;
+    private MainTopTitle title;
     public static FragmentNote newInstance(int sectionNumber) {
         FragmentNote fragment = new FragmentNote();
         Bundle args = new Bundle();
@@ -38,12 +37,9 @@ public class FragmentNote extends BaseFragment {
 
     @Override
     public void init() {
-        rlTitle = (RelativeLayout) rootView.findViewById(R.id.littleq_title);
-        rlTitle.setBackgroundResource(R.color.colorTitle);
-        tvTitle = (TextView) rootView.findViewById(R.id.tv_title);
-        tvTitle.setText(R.string.toolbar_note);
-        ivRight = (ImageView) rootView.findViewById(R.id.iv_right);
-        ivRight.setVisibility(View.GONE);
+        title = (MainTopTitle)rootView.findViewById(R.id.title);
+        MainTopTitle.Builder builder = new MainTopTitle.Builder(getString(R.string.toolbar_note));
+        title.setBuilder(builder);
     }
 
     @Override

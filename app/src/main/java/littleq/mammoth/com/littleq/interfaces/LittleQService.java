@@ -4,6 +4,7 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.GET;
@@ -17,5 +18,5 @@ import retrofit2.http.QueryMap;
 
 public interface LittleQService {
     @GET("gosun/doService")
-    Call<Response> getSLittleQResponse(@Query("acid") String id, @QueryMap Map<String, String> options);
+    Call<ResponseBody> getSLittleQResponse(@Query("acid") String id, @QueryMap Map<String, String> options);
 }

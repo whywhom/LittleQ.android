@@ -7,15 +7,16 @@
     android:fitsSystemWindows="true"
     tools:context=".ui.activity.PigaiActivity">
     <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <include layout="@layout/littleq_title"
-        android:id="@+id/littleq_title"
+    <littleq.mammoth.com.littleq.widget.MainTopTitle
+        android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_alignParentTop="true"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+    </littleq.mammoth.com.littleq.widget.MainTopTitle>
 
     <RelativeLayout
         android:id="@+id/content_pigai"
-        android:layout_below="@id/littleq_title"
+        android:layout_below="@id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="@dimen/activity_vertical_margin"
