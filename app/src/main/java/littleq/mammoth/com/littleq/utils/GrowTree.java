@@ -1,7 +1,5 @@
 package littleq.mammoth.com.littleq.utils;
 
-import android.widget.ImageView;
-
 /**
  * Created by Hunter on 2016/10/24.
  */

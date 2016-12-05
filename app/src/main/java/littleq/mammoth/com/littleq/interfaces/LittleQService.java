@@ -4,11 +4,13 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
+import littleq.mammoth.com.littleq.utils.gson.JsonTeacher;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Response;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 
@@ -17,6 +19,6 @@ import retrofit2.http.QueryMap;
  */
 
 public interface LittleQService {
-    @GET("gosun/doService")
-    Call<ResponseBody> getSLittleQResponse(@Query("acid") String id, @QueryMap Map<String, String> options);
+    @POST("gosun/doService")
+    Call<JsonTeacher> getLittleQResponse(@Query("acid") String id, @Body RequestBody parmas);
 }

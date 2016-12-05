@@ -3,13 +3,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.FragmentNote">
-    <littleq.mammoth.com.littleq.widget.MainTopTitle
+    <LinearLayout
         android:id="@+id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/top_title_height"
+        android:background="@color/default_main_top_title_bg"
+        android:orientation="horizontal"
+        android:weightSum="2"
         android:layout_alignParentTop="true">
-
-    </littleq.mammoth.com.littleq.widget.MainTopTitle>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_message"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:background="@drawable/btn_border_full"
+                android:gravity="center"
+                android:text="@string/tab_message"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/tv_contact"
+                android:layout_width="100dp"
+                android:layout_height="35dp"
+                android:background="@drawable/btn_border"
+                android:gravity="center"
+                android:text="@string/tab_contact"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"/>
+        </RelativeLayout>
+    </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

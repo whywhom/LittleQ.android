@@ -1,7 +1,6 @@
 package littleq.mammoth.com.littleq.presenter;
 
 import littleq.mammoth.com.littleq.view.IHomeworkView;
-import littleq.mammoth.com.littleq.view.IMainView;
 
 /**
  * Created by Hunter on 2016/9/18.

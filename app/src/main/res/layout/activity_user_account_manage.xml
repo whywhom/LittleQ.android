@@ -1,0 +1,84 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/user_gap_bg">
+    <littleq.mammoth.com.littleq.widget.MainTopTitle
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
+    </littleq.mammoth.com.littleq.widget.MainTopTitle>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@android:color/transparent"
+        android:layout_below="@id/title">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/transparent"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:layout_marginLeft="15dp"
+            android:textSize="14sp"
+            android:text="@string/user_account_tip"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/transparent"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/user_gap2_bg"/>
+
+        <RelativeLayout
+            android:id="@+id/rl_user_account_manage"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:clickable="true"
+            android:descendantFocusability="blocksDescendants"
+            android:background="@android:color/white" >
+            <TextView
+                android:id="@+id/tv_user_account_manage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:textColor="@color/text"
+                android:textSize="14sp"
+                android:text="@string/user_account_num"/>
+
+            <TextView
+                android:id="@+id/tv_user_modify_pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_modify_pwd"
+                android:textSize="12dp"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_xiugaimima"
+                android:gravity="center"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="5dp" />
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/user_gap2_bg"/>
+        <TextView
+            android:id="@+id/tv_change_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/royalblue"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:text="@string/user_change_account"/>
+
+    </LinearLayout>
+</RelativeLayout>

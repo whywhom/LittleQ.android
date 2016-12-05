@@ -1,8 +1,6 @@
 package littleq.mammoth.com.littleq.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import littleq.mammoth.com.littleq.R;
 import littleq.mammoth.com.littleq.utils.GrowTree;

@@ -17,9 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".ui.activity.SplashActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,39 +27,59 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.activity.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme">
+        </activity>
+        <activity
             android:name=".ui.activity.BuzhiActivity"
-            android:label="@string/title_activity_buzhi"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_buzhi" />
         <activity
             android:name=".ui.activity.MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/app_name" />
         <activity
             android:name=".ui.activity.PigaiActivity"
-            android:label="@string/title_activity_pigai"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_pigai" />
         <activity
             android:name=".ui.activity.PigaiDetailActivity"
-            android:label="@string/title_activity_pigai"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_pigai" />
         <activity
             android:name=".ui.activity.MarkActivity"
-            android:label="@string/title_activity_pigai"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_pigai" />
         <activity
             android:name=".ui.activity.DeviceListActivity"
-            android:label="@string/title_activity_devicelist"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_devicelist" />
         <activity
             android:name=".ui.activity.AddLeafActivity"
-            android:label="@string/add_leaf"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/add_leaf" />
         <activity
-            android:name=".ui.activity.ClassActivity"
-            android:label="@string/title_activity_class"/>
+            android:name=".ui.activity.EditUserInfoActivity"
+            android:label="@string/title_activity_edituser"/>
         <activity
             android:name=".ui.activity.UserInfoActivity"
             android:label="@string/title_activity_userinfo"/>
+        <activity android:name=".ui.activity.SchoolSearchActivity"
+            android:label="@string/search_school"/>
+        <activity android:name=".ui.activity.UserSettingActivity"
+            android:label="@string/action_settings"/>
+        <activity android:name=".ui.activity.UserAccountManageActivity"
+            android:label="@string/user_account_manage"/>
+        <activity android:name=".ui.activity.UserAccountBindingActivity"
+            android:label="@string/user_account_binding"/>
+        <activity android:name=".ui.activity.UserAccountMsgActivity"
+            android:label="@string/user_msg"/>
+        <activity android:name=".ui.activity.UserResetPwdActivity"
+            android:label="@string/user_reset_pwd"/>
+        <activity android:name=".ui.activity.UserLessonActivity"
+            android:label="@string/user_lesson_class"/>
+        <activity android:name=".ui.activity.UserClassActivity"
+            android:label="@string/user_class_title_default"/>
+
+        <receiver android:name=".receiver.LittleQReceiver" >
+            <intent-filter>
+                <action android:name="ittleq.mammoth.com.littleq.BOOT" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

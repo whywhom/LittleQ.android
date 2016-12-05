@@ -3,14 +3,8 @@ package littleq.mammoth.com.littleq.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+
 import android.util.Log;
-import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -23,9 +17,9 @@ import littleq.mammoth.com.littleq.ui.BaseActivity;
 public class PigaiDetailActivity extends BaseActivity {
     private static final String TAG = "PigaiDetailActivity";
     private static final boolean D = true;
-    private RecyclerView checkedListView;
+    private ListView checkedListView;
     private List<String> checkedList;
-    private RecyclerView nocheckedListView;
+    private ListView nocheckedListView;
     private List<String> nocheckList;
     private ListViewAdapter listViewAdapter;
     private Context mContext;
@@ -63,13 +57,12 @@ public class PigaiDetailActivity extends BaseActivity {
     }
     private void initListView() {
         initListData();
-        nocheckedListView = (RecyclerView) findViewById(R.id.lv_weipigai);
-        nocheckedListView.setLayoutManager(new LinearLayoutManager(this));
+        nocheckedListView = (ListView) findViewById(R.id.lv_weipigai);
         listViewAdapter = new ListViewAdapter(this, nocheckList);
         nocheckedListView.setAdapter(listViewAdapter);
         //////////////////////////////////////////////////////////////
-        checkedListView = (RecyclerView) findViewById(R.id.lv_yipigai);
-        checkedListView.setLayoutManager(new LinearLayoutManager(this));
+        checkedListView = (ListView) findViewById(R.id.lv_yipigai);
+//        checkedListView.setLayoutManager(new LinearLayoutManager(this));
         listViewAdapter = new ListViewAdapter(this, checkedList);
         checkedListView.setAdapter(new ListViewAdapter(this, checkedList));
     }

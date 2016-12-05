@@ -1,6 +1,5 @@
 package littleq.mammoth.com.littleq.ui.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -61,7 +60,7 @@ public class BuzhiActivity extends BaseActivity implements View.OnClickListener{
 
     @Override
     public void loadXml() {
-        setContentView(R.layout.activity_assigning_homework);
+        setContentView(R.layout.activity_homework_release);
     }
 
     @Override

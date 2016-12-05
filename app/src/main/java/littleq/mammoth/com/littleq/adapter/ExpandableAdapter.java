@@ -46,7 +46,7 @@ public class ExpandableAdapter extends BaseExpandableListAdapter {
         TextView txt_child_count;
         ImageView image_child;
         if(null == convertView){
-            convertView = LayoutInflater.from(activity).inflate(R.layout.child_item, null);
+            convertView = LayoutInflater.from(activity).inflate(R.layout.view_child_item, null);
         }
         /*判断是否group张开，来分别设置背景图*/
         image_child = (ImageView) convertView.findViewById(R.id.iv_right_arrow);

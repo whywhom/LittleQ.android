@@ -1,19 +1,9 @@
 package littleq.mammoth.com.littleq.ui.fragment;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-
-import java.util.ArrayList;
 
 import littleq.mammoth.com.littleq.R;
 import littleq.mammoth.com.littleq.presenter.FragmentHPresenter;

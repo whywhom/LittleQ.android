@@ -1,29 +1,74 @@
 package littleq.mammoth.com.littleq.ui.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
 import littleq.mammoth.com.littleq.R;
 import littleq.mammoth.com.littleq.adapter.SectionsPagerAdapter;
+import littleq.mammoth.com.littleq.interfaces.LittleQGetGradeInfo;
+import littleq.mammoth.com.littleq.interfaces.LittleQGetLessonInfo;
+import littleq.mammoth.com.littleq.interfaces.LittleQGetTeacherGCL;
+import littleq.mammoth.com.littleq.net.NetConstants;
+import littleq.mammoth.com.littleq.net.NetUtils;
 import littleq.mammoth.com.littleq.presenter.MainPresenter;
 import littleq.mammoth.com.littleq.ui.BaseActivity;
+import littleq.mammoth.com.littleq.ui.controller.NetController;
+import littleq.mammoth.com.littleq.user.GCLInfo;
+import littleq.mammoth.com.littleq.user.GradeClassInfo;
+import littleq.mammoth.com.littleq.user.LessonInfo;
+import littleq.mammoth.com.littleq.user.Teacher;
+import littleq.mammoth.com.littleq.utils.Constants;
+import littleq.mammoth.com.littleq.utils.ToastAlone;
+import littleq.mammoth.com.littleq.utils.gson.GCLForTeacher;
+import littleq.mammoth.com.littleq.utils.gson.GradeInfo;
+import littleq.mammoth.com.littleq.utils.gson.JsonLesson;
 import littleq.mammoth.com.littleq.view.IMainView;
+import littleq.mammoth.com.littleq.widget.CircleProgress;
+import littleq.mammoth.com.littleq.widget.ProgressDialog;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends BaseActivity implements IMainView {
+    private static final String TAG = MainActivity.class.getSimpleName();
+    public final static int MSG_GET_GRADE = 0;
+    public final static int MSG_GET_LESSON = 1;
+    public final static int MSG_GET_TEACHER_GCL = 2;//根据老师ID获取班级与课程设置信息
+    public final static int MSG_GETINFO_OK = 3;//与服务器交互完成
+
     private static int currentFregmentIndex = 0;
     private int toolbar_res[][] = null;
     private RelativeLayout toolbar_rl[] = null;
     private ImageView toolbar_iv[] = null;
     private MainPresenter mainPresenter;
     private long mExitTime = 0;
+    private NetController netController;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -33,12 +78,37 @@ public class MainActivity extends BaseActivity implements IMainView {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private LocalBroadcastManager localBroadcastManager;
+    private IntentFilter intentFilter;
+    private LocalReceiver localReceiver;
+    private HashMap<String, String> map;
+    private GetGCLListener getGCLListener = new GetGCLListener();
 
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
 
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case MSG_GET_GRADE:
+                    CircleProgress.getInstance().showCircleBar(MainActivity.this,"欢迎光临小Q班级");
+                    onGetGradeAndClass();
+                    break;
+                case MSG_GET_LESSON:
+                    onGetLesson();
+                    break;
+                case MSG_GET_TEACHER_GCL:
+                    onGetTeacherGCL();
+                    break;
+                case MSG_GETINFO_OK:
+                    CircleProgress.getInstance().dismissCircleBar();
+                    break;
+            }
+        }
+    };
 
     @Override
     public void loadXml() {
@@ -55,6 +125,17 @@ public class MainActivity extends BaseActivity implements IMainView {
         initViewPager();
         initToolbar();
         initToolbarListener();
+        registerLittleQReceiver();
+        netController = new NetController(this);
+        handler.sendEmptyMessage(MSG_GET_GRADE);
+    }
+
+    private void registerLittleQReceiver() {
+        localBroadcastManager = LocalBroadcastManager.getInstance(this);
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(Constants.BR_BOOT);
+        localReceiver = new LocalReceiver();
+        localBroadcastManager.registerReceiver(localReceiver, intentFilter);
     }
 
     @Override
@@ -87,6 +168,12 @@ public class MainActivity extends BaseActivity implements IMainView {
         super.onResume();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        localBroadcastManager.unregisterReceiver(localReceiver);
+    }
+
     private void initViewPager() {
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
@@ -96,7 +183,7 @@ public class MainActivity extends BaseActivity implements IMainView {
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
         //设置viewpager页面滑动监听事件
-        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
+        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -137,7 +224,8 @@ public class MainActivity extends BaseActivity implements IMainView {
 
         return super.onOptionsItemSelected(item);
     }
-    private void initToolbar(){
+
+    private void initToolbar() {
         //工具栏资源图标
         toolbar_res = new int[4][2];
         toolbar_res[0][0] = R.mipmap.tab_zy_s;
@@ -165,6 +253,7 @@ public class MainActivity extends BaseActivity implements IMainView {
         toolbar_iv[3] = (ImageView) findViewById(R.id.iv_user);
         mainPresenter.initToolbar(currentFregmentIndex);
     }
+
     private void initToolbarListener() {
         toolbar_rl[0].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,20 +304,23 @@ public class MainActivity extends BaseActivity implements IMainView {
             }
         });
     }
+
     @Override
     public void setToolbar(int id) {
-        for(int i=0;i<toolbar_iv.length;i++){
+        for (int i = 0; i < toolbar_iv.length; i++) {
             toolbar_iv[i].setImageResource(toolbar_res[i][1]);
         }
         toolbar_iv[id].setImageResource(toolbar_res[id][0]);
         currentFregmentIndex = id;
     }
+
     @Override
-    public void setCurrentItem(int pos){
+    public void setCurrentItem(int pos) {
         mViewPager.setCurrentItem(pos, true);
     }
+
     @Override
-    public void setCurrentTitle(int pos){
+    public void setCurrentTitle(int pos) {
     }
 
     @Override
@@ -243,5 +335,164 @@ public class MainActivity extends BaseActivity implements IMainView {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void onGetGradeAndClass() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put(Constants.TIMESTAMP, Constants.getTimeStamp());
+        netController.onGetGradeAndClassController(NetConstants.GRADE_CLASS_INFO, map
+                , new org.xutils.common.Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    int code = jsonObject.optInt("code");
+                    if (code == 200) {
+                        Gson gson = new Gson();
+                        GradeInfo gradeInfo = gson.fromJson(result, GradeInfo.class);
+                        GradeClassInfo.getInstance().setGradeInfo(gradeInfo);
+                        handler.sendEmptyMessage(MSG_GET_LESSON);
+                    } else {
+                        String msg = jsonObject.optString("message");
+                        ToastAlone.showShortToast(MainActivity.this, msg);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
+
+    public void onGetLesson() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put(Constants.TIMESTAMP, Constants.getTimeStamp());
+        map.put(Constants.T_ID, String.valueOf(Teacher.getInstance().getJsonTeacher().getTId()));
+        netController.onGetLessonController(NetConstants.LESSON_FOR_TEACHER, map
+                , new org.xutils.common.Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    int code = jsonObject.optInt("code");
+                    if (code == 200) {
+                        Gson gson = new Gson();
+                        JsonLesson jsonLesson = gson.fromJson(result, JsonLesson.class);
+                        LessonInfo.getInstance().setJsonLesson(jsonLesson);
+                        handler.sendEmptyMessage(MSG_GET_TEACHER_GCL);
+                    } else {
+                        String msg = jsonObject.optString("message");
+                        ToastAlone.showShortToast(MainActivity.this, msg);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
+
+    public void onGetTeacherGCL() {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put(Constants.TIMESTAMP, Constants.getTimeStamp());
+        map.put(Constants.T_ID, String.valueOf(Teacher.getInstance().getJsonTeacher().getTId()));
+        netController.onGetTeacherGCLController(NetConstants.GET_GRADE_CLASS_LESSON_FOR_TEACHER, map
+                , new org.xutils.common.Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    int code = jsonObject.optInt("code");
+                    if (code == 200) {
+                        Gson gson = new Gson();
+                        GCLForTeacher gclForTeacher = gson.fromJson(result, GCLForTeacher.class);
+                        GCLInfo.getInstance().setGclForTeacher(gclForTeacher);
+                        handler.sendEmptyMessage(MSG_GETINFO_OK);
+                    } else {
+                        String msg = jsonObject.optString("message");
+                        ToastAlone.showShortToast(MainActivity.this, msg);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+    }
+
+    class LocalReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(Constants.BR_BOOT)) {
+                MainActivity.this.finish();
+            }
+        }
+    }
+
+    private class GetGCLListener implements NetUtils.NetUtilsListener {
+
+        @Override
+        public void success(int code, String msg) {
+            if (code == 200) {
+                Gson gson = new Gson();
+                GCLForTeacher gclForTeacher = gson.fromJson(msg, GCLForTeacher.class);
+                GCLInfo.getInstance().setGclForTeacher(gclForTeacher);
+            } else {
+                Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
+        @Override
+        public void fail(int code, String msg) {
+            ToastAlone.showShortToast(MainActivity.this, msg);
+        }
+
+        @Override
+        public void cancel(String msg) {
+
+        }
     }
 }

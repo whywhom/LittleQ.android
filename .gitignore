@@ -8,3 +8,8 @@
 /captures
 /.idea
 /app/libs/.idea
+/CallKit/build
+/CallLib/build
+/IMKit/build
+/IMLib/build
+/RedPacket/build

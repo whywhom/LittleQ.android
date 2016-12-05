@@ -7,7 +7,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -54,7 +53,7 @@ public class CircleView extends RelativeLayout {
 
     private void  init(Context context){
         this.context = context;
-        LayoutInflater.from(context).inflate(R.layout.cycle_view, this);
+        LayoutInflater.from(context).inflate(R.layout.view_cycle, this);
         mGroup = (ViewGroup) findViewById(R.id.viewGroup);
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setOnPageChangeListener(new GuidePageChangeListener());

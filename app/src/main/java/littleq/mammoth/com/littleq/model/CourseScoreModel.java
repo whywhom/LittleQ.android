@@ -1,7 +1,6 @@
 package littleq.mammoth.com.littleq.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by User on 2016/11/4.

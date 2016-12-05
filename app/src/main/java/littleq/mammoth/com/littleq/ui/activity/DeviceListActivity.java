@@ -10,14 +10,14 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import java.util.Set;
 
@@ -38,19 +38,12 @@ public class DeviceListActivity extends BaseActivity{
     private ArrayAdapter<String> mNewDevicesArrayAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);
-    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
 
         if (mBtAdapter != null) {
             mBtAdapter.cancelDiscovery();
         }
-
         this.unregisterReceiver(mReceiver);
     }
 
@@ -116,7 +109,7 @@ public class DeviceListActivity extends BaseActivity{
 
     @Override
     public void loadXml() {
-        setContentView(R.layout.device_list);
+        setContentView(R.layout.view_device_list);
     }
 
     @Override
@@ -135,8 +128,8 @@ public class DeviceListActivity extends BaseActivity{
             }
         });
 
-        mPairedDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.device_name);
-        mNewDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.device_name);
+        mPairedDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.view_device_name);
+        mNewDevicesArrayAdapter = new ArrayAdapter<String>(this, R.layout.view_device_name);
 
         ListView pairedListView = (ListView) findViewById(R.id.paired_devices);
         pairedListView.setAdapter(mPairedDevicesArrayAdapter);

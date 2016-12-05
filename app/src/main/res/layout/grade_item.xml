@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_grade"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@android:color/transparent">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/transparent"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/user_gap2_bg"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_user_grade"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:gravity="center_vertical"
+        android:clickable="true"
+        android:descendantFocusability="blocksDescendants"
+        android:background="@android:color/white" >
+        <TextView
+            android:id="@+id/tv_user_grade_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/text"
+            android:textSize="14sp"
+            android:text="@string/user_class_grade"/>
+
+        <ImageView
+            android:id="@+id/iv_user_grade_item_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:src="@mipmap/disclosure_down"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"/>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/user_gap2_bg"/>
+
+    <HorizontalScrollView
+        android:id="@+id/hsv_class_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+        <LinearLayout
+            android:id="@+id/ll_class_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"/>
+    </HorizontalScrollView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/user_gap2_bg"/>
+
+</LinearLayout>

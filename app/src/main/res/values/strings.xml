@@ -13,7 +13,7 @@
     <string name="rfid_wait_for_read">等待读取作业本……</string>
     <string name="rfid_read">请将作业本的电子标签触碰读卡器</string>
     <string name="rfid_read_ok">读取成功</string>
-
+    <string name="common_save">保存</string>
     <!--  DeviceListActivity -->
     <string name="scanning">scanning for devices...</string>
     <string name="select_device">select a device to connect</string>
@@ -35,7 +35,9 @@
     <!-- FragmentGrowup-->
     <string name="add_leaf">添加一片树叶</string>
     <string name="growup_allclass">全部班级</string>
-
+    <!-- FragmentNote-->
+    <string name="tab_message">消息</string>
+    <string name="tab_contact">通讯录</string>
     <!-- FragmentUser-->
     <string name="lesson_and_class">科目与班级</string>
     <string name="user_score">作业分制</string>
@@ -44,7 +46,6 @@
     <string name="user_share">分享给学生家长和朋友</string>
     <string name="user_share_tip">分享给更多的人一起使用吧!分享有奖励哦</string>
     <string name="user_share_detail">查看详情</string>
-    <string name="title_activity_class">ClassActivity</string>
 
     <!--UserInfoActivity-->
     <string name="title_activity_userinfo">个人信息</string>
@@ -52,11 +53,83 @@
     <string name="userinfo_name">姓名</string>
     <string name="userinfo_name_detail">唐三藏</string>
     <string name="userinfo_sex">性别</string>
+    <string name="userinfo_sex_male">男</string>
+    <string name="userinfo_sex_female">女</string>
+    <string name="userinfo_sex_unknown">未知</string>
     <string name="userinfo_sex_detail">女</string>
     <string name="userinfo_birth">生日</string>
     <string name="userinfo_birth_detail">1990-10-10</string>
     <string name="userinfo_mobile">手机号码</string>
-    <string name="userinfo_mobile_detail">133****6656</string>
+    <string name="userinfo_mobile_detail">13316006656</string>
     <string name="userinfo_myschool">我的学校</string>
     <string name="userinfo_myschool_detail">上海愚园路第一小学</string>
+
+    <!--EditUserInfoActivity-->
+    <string name="title_activity_edituser">用户编辑</string>
+    <string name="userinfo_edit_finish">完成</string>
+    <string name="modify_name">修改姓名</string>
+    <string name="modify_mobile">修改手机号码</string>
+    <string name="userinfo_name_edit">请输入姓名</string>
+    <string name="userinfo_mobile_edit">请输入手机号码</string>
+
+    <!--SchoolSearchActivity-->
+    <string name="search_school">选择学校</string>
+    <string name="userinfo_school_edithint">输入学校名称或者拼音</string>
+
+    <!--UserSettingActivity-->
+    <string name="user_account_manage">账号管理</string>
+    <string name="user_account_binding">账号绑定</string>
+    <string name="user_msg_setting">消息设置</string>
+    <string name="user_about_us">关于我们</string>
+    <string name="user_logout">退出账户</string>
+
+    <!--UserAccountManageActivity-->
+    <string name="user_account_tip">已注册账号</string>
+    <string name="user_change_account">更换手机号码</string>
+    <string name="user_modify_pwd">修改密码</string>
+    <string name="user_account_num">18566636597</string>
+
+    <!--UserAccountBindingActivity-->
+    <string name="user_binding_weixin">微信账号</string>
+    <string name="user_binding_qq">QQ账号</string>
+    <string name="user_binding_weibo">微博账号</string>
+    <!--UserAccountMsgActivity-->
+    <string name="user_msg">消息通知</string>
+    <string name="user_msg_awake">消息提醒</string>
+    <!--UserResetPwdActivity-->
+    <string name="user_reset_pwd">重置密码</string>
+    <string name="user_verify_mobile">验证您的手机号码</string>
+    <string name="user_verify_input_mobile">手机号码：</string>
+    <string name="user_verify_code">验证码：</string>
+    <string name="user_verify_get_code">获取验证码</string>
+    <string name="user_verify_new_pwd">请输入您的新密码</string>
+    <string name="user_verify_input_new_pwd">新密码：</string>
+    <string name="user_verify_input_new_pwd2">确认密码：</string>
+    <string name="user_verify_confirm">确定</string>
+
+    <!--UserLessonActivity-->
+    <string name="user_lesson_class">科目与班级</string>
+    <string name="user_lesson_class_sel">请选择您所教授的科目与班级</string>
+    <string name="user_lesson_chinese">语文</string>
+    <string name="user_lesson_math">数学</string>
+    <string name="user_lesson_english">英语</string>
+    <string name="user_lesson_director_or_not">是否班主任？</string>
+    <string name="user_lesson_director">我是班主任</string>
+
+    <!--UserClassActivity-->
+    <string name="user_class_title_default">班级</string>
+    <string name="user_class_title_save">保存</string>
+    <string name="user_class_grade">年级</string>
+
+    <!--Dialog-->
+    <string name="dialog_btn_cancel">取消</string>
+    <string name="dialog_btn_ok">确定</string>
+    <string name="user_forget_pwd">忘记密码？</string>
+    <string name="user_input_pwd_tip">为保障您的账号安全，请填写原密码验证</string>
+    <string name="user_err_pwd">密码错误，请重新输入</string>
+    <string name="user_ori_pwd">请填写原密码</string>
+    <string name="user_confirm_pwd">验证原密码</string>
+    <string name="user_new_pwd">验证成功，请输入新密码</string>
+    <string name="user_new_pwd_format">6-16位密码，建议数字、字母组合</string>
+    <string name="user_pwd_modify_success">密码修改成功</string>
 </resources>

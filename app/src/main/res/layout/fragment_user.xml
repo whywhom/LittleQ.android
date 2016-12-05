@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
-                android:text="唐三藏"/>
+                android:text="@string/app_name"/>
             <TextView
                 android:id="@+id/user_class"
                 android:layout_width="wrap_content"
@@ -77,6 +77,8 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:gravity="center_vertical"
+            android:clickable="true"
+            android:descendantFocusability="blocksDescendants"
             android:background="@android:color/white">
             <ImageView
                 android:id="@+id/iv_lesson_class"
@@ -91,9 +93,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerInside"
-                android:src="@mipmap/btn_disclosure_arrow_h"
+                android:src="@mipmap/btn_disclosurearrow_gray_n"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginRight="25dp"/>
             <TextView
                 android:id="@+id/tv_lesson_class"
                 android:layout_width="match_parent"
@@ -114,6 +116,8 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:gravity="center_vertical"
+            android:clickable="true"
+            android:descendantFocusability="blocksDescendants"
             android:background="@android:color/white" >
             <ImageView
                 android:id="@+id/iv_score"
@@ -128,9 +132,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerInside"
-                android:src="@mipmap/btn_disclosure_arrow_h"
+                android:src="@mipmap/btn_disclosurearrow_gray_n"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginRight="25dp"/>
             <TextView
                 android:id="@+id/tv_score"
                 android:layout_width="match_parent"
@@ -159,6 +163,8 @@
             android:layout_width="wrap_content"
             android:layout_height="44dp"
             android:gravity="center_vertical"
+            android:clickable="true"
+            android:descendantFocusability="blocksDescendants"
             android:background="@android:color/white">
             <ImageView
                 android:id="@+id/iv_wallet"
@@ -173,9 +179,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerInside"
-                android:src="@mipmap/btn_disclosure_arrow_h"
+                android:src="@mipmap/btn_disclosurearrow_gray_n"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginRight="25dp"/>
             <TextView
                 android:id="@+id/tv_wallet"
                 android:layout_width="match_parent"
@@ -204,6 +210,8 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:gravity="center_vertical"
+            android:clickable="true"
+            android:descendantFocusability="blocksDescendants"
             android:background="@android:color/white">
             <ImageView
                 android:id="@+id/iv_setting"
@@ -218,9 +226,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scaleType="centerInside"
-                android:src="@mipmap/btn_disclosure_arrow_h"
+                android:src="@mipmap/btn_disclosurearrow_gray_n"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="15dp"/>
+                android:layout_marginRight="25dp"/>
             <TextView
                 android:id="@+id/tv_setting"
                 android:layout_width="match_parent"

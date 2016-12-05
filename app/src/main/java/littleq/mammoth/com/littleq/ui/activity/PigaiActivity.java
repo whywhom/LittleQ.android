@@ -34,6 +34,7 @@ import littleq.mammoth.com.littleq.R;
 import littleq.mammoth.com.littleq.adapter.ExpandableAdapter;
 import littleq.mammoth.com.littleq.application.LittleQApp;
 import littleq.mammoth.com.littleq.ui.BaseActivity;
+import littleq.mammoth.com.littleq.utils.SPUtils;
 import littleq.mammoth.com.littleq.widget.MainTopTitle;
 
 public class PigaiActivity extends BaseActivity {
@@ -81,7 +82,7 @@ public class PigaiActivity extends BaseActivity {
 
     @Override
     public void loadXml() {
-        setContentView(R.layout.activity_pigai);
+        setContentView(R.layout.activity_homework_pigai);
     }
 
     @Override
@@ -286,7 +287,7 @@ public class PigaiActivity extends BaseActivity {
 
     private void cardScan() {
         byte[] appendData = new byte[16];
-
+        cardType = mmposService.CARDTYPE_NFC | mmposService.CARDTYPE_IC|mmposService.CARDTYPE_MAG;
         mmposService.checkCard(cardType,
                 mmposService.NORMAL_DEVICE,
                 appendData, appendData.length,
@@ -335,24 +336,20 @@ public class PigaiActivity extends BaseActivity {
         mConnectedDeviceMAC = address;
 
         Properties prop = new Properties();
-        prop.put("MAC", mConnectedDeviceMAC);
-        saveConfig(this, mCurentPath+ "/" + mConfigFile, prop);
+        SPUtils.put(PigaiActivity.this, "MAC", mConnectedDeviceMAC);
+//        saveConfig(this, mCurentPath+ "/" + mConfigFile, prop);
 
-        prop.put("Name", mConnectedDeviceName);
-        saveConfig(this, mCurentPath+ "/" + mConfigFile, prop);
+        SPUtils.put(PigaiActivity.this, "Name", mConnectedDeviceName);
+//        saveConfig(this, mCurentPath+ "/" + mConfigFile, prop);
 
         mHandler.obtainMessage(MESSAGE_HOST, 0, 0,
                 "Select BT Device: Name=" + mConnectedDeviceName + " MAC=" + mConnectedDeviceMAC).sendToTarget();
     }
 
     private void connectBT() {
-
-        Properties prop = loadConfig(this, mCurentPath+ "/" + mConfigFile);
-
-        String address = (String) prop.get("MAC");
-        String name = (String) prop.get("Name");
-
-        if(address == null)
+        String address = (String) SPUtils.get(PigaiActivity.this,"MAC","");
+        String name = (String) SPUtils.get(PigaiActivity.this,"Name","");
+        if(address == null || address == "")
         {
             mHandler.obtainMessage(MESSAGE_HOST, 0, 0,
                     "Haven't connected to mpos, press ScanMpos to scan and connect mpos").sendToTarget();
@@ -369,33 +366,13 @@ public class PigaiActivity extends BaseActivity {
     }
 
     private void disconnectBT() {
-
         mConnectAgain = 0;
-
         mmposService.disconnectBT();
-
         mHandler.obtainMessage(MESSAGE_HOST, 0, 0,
                 "Disonnect BT").sendToTarget();
-
     }
-
-    private void saveConfig(Context context, String file, Properties properties) {
-        try {
-            FileOutputStream s = new FileOutputStream(file, false);
-            properties.store(s, "");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    private Properties loadConfig(Context context, String file) {
-        Properties properties = new Properties();
-        try {
-            FileInputStream s = new FileInputStream(file);
-            properties.load(s);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return properties;
+    private void cancelSwiper() {
+        mmposService.abortCheckCard();
     }
 
     private final Handler mHandler = new Handler() {
@@ -404,23 +381,33 @@ public class PigaiActivity extends BaseActivity {
             switch (msg.what) {
 
                 case MESSAGE_HOST:
-                    //log信息输出
-                    Log.d(TAG,(String) msg.obj);
+                    if(msg.obj != null) {
+                        Log.d(TAG, (String) msg.obj);
+                    }
                     break;
 
                 case MESSAGE_SWIPER:
-                    Log.d(TAG,(String) msg.obj);
+                    if(msg.obj != null) {
+                        Log.d(TAG, (String) msg.obj);
+                    }
+                    if(msg.arg1 == 0 && msg.arg2 == 0){
+                        mHandler.sendEmptyMessage(MESSAGE_START);
+                    }
                     break;
 
                 case MESSAGE_START:
-                    Log.d(TAG,(String) msg.obj);
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                           //开始识别
-                            cardScan();
-                        }
-                    }).start();
+                    if(msg.obj != null) {
+                        Log.d(TAG, (String) msg.obj);
+                    }
+//                    new Thread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                           //开始识别
+//                            cardScan();
+//                        }
+//                    }).start();
+                    //开始识别
+                    cardScan();
                     break;
 
             }
@@ -485,13 +472,10 @@ public class PigaiActivity extends BaseActivity {
         public void onWaitingForCardSwipe() {
             // TODO Auto-generated method stub
 
-            if(cardType == mmposService.CARDTYPE_NFC)
-            {
+            if(cardType == mmposService.CARDTYPE_NFC) {
                 mHandler.obtainMessage(MESSAGE_SWIPER, 3, 1,
                         "请放非接卡").sendToTarget();
-            }
-            else
-            {
+            } else {
                 mHandler.obtainMessage(MESSAGE_SWIPER, 3, 2,
                         "请插卡或刷卡").sendToTarget();
             }
@@ -504,18 +488,13 @@ public class PigaiActivity extends BaseActivity {
         @Override
         public void onCheckCardCompleted(int cardType, int status, String PAN, String track2, HashMap additonal) {
             // TODO Auto-generated method stub
-            if(cardType == mmposService.CARDTYPE_IC)
-            {
+            if(cardType == mmposService.CARDTYPE_IC) {
                 mHandler.obtainMessage(MESSAGE_SWIPER, 4, 1,
                         "Detect IC Card Status: " + status).sendToTarget();
-            }
-            else if(cardType == mmposService.CARDTYPE_MAG)
-            {
+            } else if(cardType == mmposService.CARDTYPE_MAG) {
                 mHandler.obtainMessage(MESSAGE_SWIPER, 4, 2,
                         "Detect MAG Card Status: " + status).sendToTarget();
-            }
-            else if(cardType == mmposService.CARDTYPE_NFC)
-            {
+            } else if(cardType == mmposService.CARDTYPE_NFC) {
                 mHandler.obtainMessage(MESSAGE_SWIPER, 4, 3,
                         "Detect NFC Card Status: " + status).sendToTarget();
             }
